@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+//import Homepage from "./Homepage";
+import { fbase } from "../fbase";
 
 class AdminPanel extends Component {
   state = {
@@ -7,7 +9,8 @@ class AdminPanel extends Component {
       car: "",
       days: "",
       cash: ""
-    }
+    },
+    rents: []
   };
 
   onChange = e => {
@@ -23,9 +26,12 @@ class AdminPanel extends Component {
   onSubmit = e => {
     e.preventDefault();
     const newOneRent = { ...this.state.rent };
+    //const newArrRents = [...this.state.rents];
 
-    this.props.onRent(newOneRent);
+    //this.props.rentMain(newOneRent);
+
     this.setState({
+      rents: [this.state.rents, newOneRent],
       rent: {
         model: "",
         car: "",
@@ -35,6 +41,17 @@ class AdminPanel extends Component {
     });
     console.log("new", newOneRent);
   };
+
+  componentDidMount() {
+    this.ref = fbase.syncState("rentstore/rents", {
+      context: this,
+      state: "rents"
+    });
+  }
+
+  componentWillUnmount() {
+    fbase.removeBinding(this.ref);
+  }
 
   render() {
     return (
