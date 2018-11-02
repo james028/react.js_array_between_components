@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-//import InventoryDetails from "./InventoryDetails";
+import InventoryDetails from "./InventoryDetails";
+
 class Inventory extends Component {
   render() {
     return (
@@ -7,7 +8,9 @@ class Inventory extends Component {
         <div>
           <h3>Your rent cars: </h3>
           {this.props.rentMain.map((e, i) => {
-            return <div>{e.car}</div>;
+            return (
+              <InventoryDetails rent={e} key={i} newRent={this.props.newRent} />
+            );
           })}
         </div>
       </div>

@@ -7,7 +7,8 @@ import Order from "./components/Order";
 
 class App extends Component {
   state = {
-    rentMain: []
+    rentMain: [],
+    orders: []
   };
 
   onSubmitRent = event => {
@@ -17,6 +18,19 @@ class App extends Component {
 
     this.setState({
       rentMain: newRent
+    });
+  };
+
+  addNewRent = event => {
+    this.setState({
+      orders: [...this.state.orders, event]
+    });
+    console.log(this.state.orders);
+  };
+
+  removeRent = event => {
+    this.setState({
+      orders: this.state.orders.filter(item => event !== item.car)
     });
   };
 
@@ -30,10 +44,13 @@ class App extends Component {
               <PanelAdmin onRent={this.onSubmitRent} />
             </div>
             <div className="col-md-4">
-              <Inventory rentMain={this.state.rentMain} />
+              <Inventory
+                rentMain={this.state.rentMain}
+                newRent={this.addNewRent}
+              />
             </div>
             <div className="col-md-4">
-              <Order orders={this.state.orders} />
+              <Order orders={this.state.orders} remove={this.removeRent} />
             </div>
           </div>
         </div>
