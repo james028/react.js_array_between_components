@@ -41,7 +41,8 @@ class Homepage extends Component {
         <div className="container">
           <div className="row">
             <div className="col-md-12">
-              <Adminpanel rentMain={this.onSubmitRent} />
+              <Adminpanel />
+              <Link to="admin">Go to admin panel</Link>
             </div>
             <div className="col-md-6" style={{ marginTop: "50px" }}>
               <Inventory

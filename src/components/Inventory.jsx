@@ -25,17 +25,7 @@ class Inventory extends Component {
           <h3>Your rent cars: </h3>
           {this.state.rents.map((e, i) => {
             return (
-              <div>
-                <div>{e.model}</div>
-                <div>{e.car}</div>
-                <div>{e.days}</div>
-                <button
-                  className="btn btn-primary"
-                  onClick={() => this.props.newRent(e)}
-                >
-                  Add rent
-                </button>
-              </div>
+              <InventoryDetails rent={e} key={i} newRent={this.props.newRent} />
             );
           })}
         </div>
