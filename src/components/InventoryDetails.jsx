@@ -13,6 +13,12 @@ class InventoryDetails extends Component {
         >
           Add Rent
         </button>
+        <button
+          className="btn btn-danger"
+          onClick={() => this.props.removeRents(this.props.rent.car)}
+        >
+          Remove Rent
+        </button>
       </div>
     );
   }

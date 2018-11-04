@@ -18,6 +18,12 @@ class Inventory extends Component {
     fbase.removeBinding(this.ref);
   }
 
+  removeItems = event => {
+    this.setState({
+      rents: this.state.rents.filter(item => event !== item.car)
+    });
+  };
+
   render() {
     return (
       <div>
@@ -25,7 +31,12 @@ class Inventory extends Component {
           <h3>Your rent cars: </h3>
           {this.state.rents.map((e, i) => {
             return (
-              <InventoryDetails rent={e} key={i} newRent={this.props.newRent} />
+              <InventoryDetails
+                rent={e}
+                key={i}
+                newRent={this.props.newRent}
+                removeRents={this.removeItems}
+              />
             );
           })}
         </div>
